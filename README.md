@@ -1,32 +1,76 @@
-# Data Project README file
+# w3schools
 
-The README file describes the essence of the project playing the most important role. Most visitors will simply scroll down about twice on the README and leave if they are not interested. So, the README file should provide the reason **why** to checkout your project!!!). 
-Bearing that in mind, your job is to: 
-- Tell them what it is (with context).
-- Show them what it looks like in action.
-- Show them how they use it.
-- Tell them any other relevant details.
+Set up your own PostgreSQL server and load w3schools dataset on it.
 
-![Image](https://res.cloudinary.com/springboard-images/image/upload/q_auto,f_auto,fl_lossy/wordpress/2019/05/aiexcerpt.png)
 
+
+## :wrench: Installing and configuring PostgresSQL
+
+Install PostrgeSQL by running in the terminal: 
+```
+sudo apt install postgresql
+```
+
+Once installed, configure users within the PostgreSQL shell. By default, the host name will be ´localhost´, port ´5432´, database name ´postgres´ and the password is empty. Add or modify user password using the ALTER command.
+```
+ALTER USER postgres PASSWORD 'root';
+```
+
+Every user should have its own database for storing user information and privileges. Create a new user and its own database running the code below.
+```
+CREATE USER nico WITH CREATEDB LOGIN ENCRYPTED PASSWORD 'nico';
+CREATE DATABASE nico;
+```
+
+Grant privileges using the grant command
+```
+GRANT ALL PRIVILEGES ON DATABASE w3schools TO nico;
+```
+
+Run PostgreSQL by typing 
+```
+psql -U postgres -h localhost
+```
+
+Installing pgAdmin4
+This software is the helps you manage the server and its databases. It comes in two modes, desktop and web mode. Desktop mode downloads and installs an app in your machine while the web mode installs the app without any user interface, it uses the installed browser.
+
+Install both modes or only one of them running one of the following commands:
+```
+sudo apt install pgadmin4
+sudo apt install pgadmin4-desktop
+sudo apt install pgadmin4-web
+```
+
+Once the installation process is finished, configure 
+The desktop version is configured within the app while the web version is set up in the terminal running the commands below. It will ask for a user name, password (root21) and an apache configuration (answer yes). Finally it will show the url that should be used to access the system, by default it is: http://127.0.0.1/pgadmin4
+```
+/usr/pgadmin4/bin/setup-web.sh
+```
+
+
+Useful commands in PostgreSQL shell:
+**\l**: List of databases.
+**\du**: List of users and roles.
+**\d**: List of tables in current database.
+**\dt**: List of tables in current database.
+**\dt+**: List of tables in current database with additional info.
+**\d table_name**: Table information.
+**\q**: Exit shell.
 ---
 
-## **Formatting**
-Your readers will most likely view your README in a browser so please keep that in mind when formatting its content: 
-- Use proper format when necesary (e.g.: `import pandas as pd`). 
-- Categorize content using two or three levels of header beneath. 
-- Make use of **emphasis** to call out important words. 
-- Link to project pages for related libraries you mention. Link to Wikipedia, Wiktionary, even Urban Dictionary definitions for words of which a reader may not be familiar. Make amusing cultural references. 
-- Add links to related projects or services. 
-
-> Here you have a markdown cheatsheet [Link](https://commonmark.org/help/) and tutorial [Link](https://commonmark.org/help/tutorial/).
 
 
-## **Start writing ASAP:**
-*Last but not least, by writing your README soon you give yourself some pretty significant advantages. Most importantly, you’re giving yourself a chance to think through the project without the overhead of having to change code every time you change your mind about how something should be organized or what should be included.*
+Dumping w3schools data
+
+CREATE DATABASE w3schools
+
+\connect w3schools
+
+\i file.sql
 
 
-## **Suggested Structure:**
+
 
 ### :raising_hand: **Name** 
 Self-explanatory names are best. If the name sounds too vague or unrelated, it may be a signal to move on. It also must be catchy. Images, Logo, Gif or some color is strongly recommended.
