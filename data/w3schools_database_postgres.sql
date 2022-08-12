@@ -1,17 +1,16 @@
--- CREATE DATABASE w3schools /*!40100 DEFAULT CHARACTER SET utf8 */;
--- USE w3schools;
 --
 -- Database: `w3schools`
 --
 
 -- --------------------------------------------------------
 
+-- CATEGORIES TABLE
 --
 -- Table structure for table `categories`
 --
 
 CREATE TABLE categories (
-  CategoryID int PRIMARY KEY, --NOT NULL,
+  CategoryID int PRIMARY KEY,
   CategoryName varchar(255) DEFAULT NULL,
   Description varchar(255) DEFAULT NULL
 );
@@ -30,14 +29,23 @@ INSERT INTO categories (CategoryID, CategoryName, Description) VALUES
 (7, 'Produce', 'Dried fruit and bean curd'),
 (8, 'Seafood', 'Seaweed and fish');
 
+--
+-- AUTO_INCREMENT for table `categories` (creating a sequence, like serial datatype)
+--
+
+CREATE SEQUENCE categoryid_seq MINVALUE 9;
+ALTER TABLE categories ALTER CategoryID SET DEFAULT nextval('categoryid_seq');
+ALTER SEQUENCE categoryid_seq OWNED BY categories.CategoryID;
+
 -- --------------------------------------------------------
 
+-- CUSTOMERS TABLE
 --
 -- Table structure for table `customers`
 --
 
 CREATE TABLE customers (
-  CustomerID int PRIMARY KEY, --NOT NULL,
+  CustomerID int PRIMARY KEY,
   CustomerName varchar(255) DEFAULT NULL,
   ContactName varchar(255) DEFAULT NULL,
   Address varchar(255) DEFAULT NULL,
@@ -141,11 +149,20 @@ INSERT INTO customers (CustomerID, CustomerName, ContactName, Address, City, Pos
 (88, 'Wellington Importadora', 'Paula Parente', 'Rua do Mercado, 12', 'Resende', '08737-363', 'Brazil'),
 (89, 'White Clover Markets', 'Karl Jablonski', '305 - 14th Ave. S. Suite 3B', 'Seattle', '98128', 'USA'),
 (90, 'Wilman Kala', 'Matti Karttunen', 'Keskuskatu 45', 'Helsinki', '21240', 'Finland'),
-(91, 'Wolski', 'Zbyszek', 'ul. Filtrowa 68', 'Walla', '01-012', 'Poland');
-(92, 'Cortinas y Persianas', 'Nicolas Cortinas', 'C/ Churruca, 15', 'Madrid', '28011', 'Spain')
+(91, 'Wolski', 'Zbyszek', 'ul. Filtrowa 68', 'Walla', '01-012', 'Poland'),
+(92, 'Cortinas y Persianas', 'Nicolas Cortinas', 'C/ Churruca, 15', 'Madrid', '28011', 'Spain');
+
+--
+-- AUTO_INCREMENT for table `customers` (creating a sequence, like serial datatype)
+--
+
+CREATE SEQUENCE customerid_seq MINVALUE 93;
+ALTER TABLE customers ALTER CustomerID SET DEFAULT nextval('customerid_seq');
+ALTER SEQUENCE customerid_seq OWNED BY customers.CustomerID;
 
 -- --------------------------------------------------------
 
+-- EMPLOYEES TABLE
 --
 -- Table structure for table `employees`
 --
@@ -175,8 +192,17 @@ INSERT INTO employees (EmployeeID, LastName, FirstName, BirthDate, Photo, Notes)
 (9, 'Dodsworth', 'Anne', '1969-07-02', 'EmpID9.pic', 'Anne has a BA degree in English from St. Lawrence College. She is fluent in French and German.'),
 (10, 'West', 'Adam', '1928-09-19', 'EmpID10.pic', 'An old chum.');
 
+--
+-- AUTO_INCREMENT for table `employees` (creating a sequence, like serial datatype)
+--
+
+CREATE SEQUENCE employeeid_seq MINVALUE 11;
+ALTER TABLE employees ALTER EmployeeID SET DEFAULT nextval('employeeid_seq');
+ALTER SEQUENCE employeeid_seq OWNED BY employees.EmployeeID;
+
 -- --------------------------------------------------------
 
+-- ORDERS TABLE
 --
 -- Table structure for table `orders`
 --
@@ -391,8 +417,17 @@ INSERT INTO orders (OrderID, CustomerID, EmployeeID, OrderDate, ShipperID) VALUE
 (10442, 20, 3, '1997-02-11', 2),
 (10443, 66, 8, '1997-02-12', 1);
 
+--
+-- AUTO_INCREMENT for table `orders` (creating a sequence, like serial datatype)
+--
+
+CREATE SEQUENCE orderid_seq MINVALUE 10444;
+ALTER TABLE orders ALTER OrderID SET DEFAULT nextval('orderid_seq');
+ALTER SEQUENCE orderid_seq OWNED BY orders.OrderID;
+
 -- --------------------------------------------------------
 
+-- ORDER DETAILS TABLE
 --
 -- Table structure for table `order_details`
 --
@@ -928,8 +963,17 @@ INSERT INTO order_details (OrderDetailID, OrderID, ProductID, Quantity) VALUES
 (517, 10443, 11, 6),
 (518, 10443, 28, 12);
 
+--
+-- AUTO_INCREMENT for table `order_details` (creating a sequence, like serial datatype)
+--
+
+CREATE SEQUENCE orderdetailid_seq MINVALUE 519;
+ALTER TABLE order_details ALTER OrderDetailID SET DEFAULT nextval('orderdetailid_seq');
+ALTER SEQUENCE orderdetailid_seq OWNED BY order_details.OrderDetailID;
+
 -- --------------------------------------------------------
 
+-- PRODUCTS TABLE
 --
 -- Table structure for table `products`
 --
@@ -950,7 +994,7 @@ CREATE TABLE products (
 INSERT INTO products (ProductID, ProductName, SupplierID, CategoryID, Unit, Price) VALUES
 (1, 'Chais', 1, 1, '10 boxes x 20 bags', 18),
 (2, 'Chang', 1, 1, '24 - 12 oz bottles', 19),
-(3, 'Aniseed Syrup', 1, 2, '12 - 550 ml bottles', 10.2);,
+(3, 'Aniseed Syrup', 1, 2, '12 - 550 ml bottles', 10.2),
 (4, 'Chef Antons Cajun Seasoning', 2, 2, '48 - 6 oz jars', 22),
 (5, 'Chef Antons Gumbo Mix', 2, 2, '36 boxes', 21.35),
 (6, 'Grandmas Boysenberry Spread', 3, 2, '12 - 8 oz jars', 25),
@@ -1026,8 +1070,17 @@ INSERT INTO products (ProductID, ProductName, SupplierID, CategoryID, Unit, Pric
 (76, 'Lakkalikööri', 23, 1, '500 ml', 18),
 (77, 'Original Frankfurter grüne Soße', 12, 2, '12 boxes', 13);
 
+--
+-- AUTO_INCREMENT for table `products` (creating a sequence, like serial datatype)
+--
+
+CREATE SEQUENCE productid_seq MINVALUE 78;
+ALTER TABLE products ALTER ProductID SET DEFAULT nextval('productid_seq');
+ALTER SEQUENCE productid_seq OWNED BY products.ProductID;
+
 -- --------------------------------------------------------
 
+-- SHIPPERS TABLE
 --
 -- Table structure for table `shippers`
 --
@@ -1047,8 +1100,17 @@ INSERT INTO shippers (ShipperID, ShipperName, Phone) VALUES
 (2, 'United Package', '(503) 555-3199'),
 (3, 'Federal Shipping', '(503) 555-9931');
 
+--
+-- AUTO_INCREMENT for table `shippers` (creating a sequence, like serial datatype)
+--
+
+CREATE SEQUENCE shipperid_seq MINVALUE 4;
+ALTER TABLE shippers ALTER ShipperID SET DEFAULT nextval('shipperid_seq');
+ALTER SEQUENCE shipperid_seq OWNED BY shippers.ShipperID;
+
 -- --------------------------------------------------------
 
+-- SUPPLIERS TABLE
 --
 -- Table structure for table `suppliers`
 --
@@ -1100,143 +1162,11 @@ INSERT INTO suppliers (SupplierID, SupplierName, ContactName, Address, City, Pos
 (29, 'Forêts dérables', 'Chantal Goulet', '148 rue Chasseur', 'Ste-Hyacinthe', 'J2S 7S8', 'Canada', '(514) 555-2955');
 
 --
--- Indexes for dumped tables
+-- AUTO_INCREMENT for table `suppliers` (creating a sequence, like serial datatype)
 --
 
---
--- Indexes for table `categories`
---
--- ALTER TABLE `categories`
---  ADD PRIMARY KEY (`CategoryID`);
+CREATE SEQUENCE supplierid_seq MINVALUE 30;
+ALTER TABLE suppliers ALTER SupplierID SET DEFAULT nextval('supplierid_seq');
+ALTER SEQUENCE supplierid_seq OWNED BY suppliers.SupplierID;
 
---
--- Indexes for table `customers`
---
--- ALTER TABLE `customers`
---   ADD PRIMARY KEY (`CustomerID`);
-
---
--- Indexes for table `employees`
---
--- ALTER TABLE `employees`
---   ADD PRIMARY KEY (`EmployeeID`);
-
---
--- Indexes for table `orders`
---
--- ALTER TABLE `orders`
---  ADD PRIMARY KEY (`OrderID`),
---  ADD KEY `CustomerID` (`CustomerID`),
---  ADD KEY `EmployeeID` (`EmployeeID`),
---  ADD KEY `ShipperID` (`ShipperID`);
-
---
--- Indexes for table `order_details`
---
--- ALTER TABLE `order_details`
---  ADD PRIMARY KEY (`OrderDetailID`),
---  ADD KEY `OrderID` (`OrderID`),
---  ADD KEY `ProductID` (`ProductID`);
-
---
--- Indexes for table `products`
---
--- ALTER TABLE `products`
---   ADD PRIMARY KEY (`ProductID`),
---   ADD KEY `CategoryID` (`CategoryID`),
---   ADD KEY `SupplierID` (`SupplierID`);
-
---
--- Indexes for table `shippers`
---
--- ALTER TABLE `shippers`
---  ADD PRIMARY KEY (`ShipperID`);
-
---
--- Indexes for table `suppliers`
---
--- ALTER TABLE `suppliers`
---  ADD PRIMARY KEY (`SupplierID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `CategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `customers`
---
-ALTER TABLE `customers`
-  MODIFY `CustomerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
-
---
--- AUTO_INCREMENT for table `employees`
---
-ALTER TABLE `employees`
-  MODIFY `EmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10444;
-
---
--- AUTO_INCREMENT for table `order_details`
---
-ALTER TABLE `order_details`
-  MODIFY `OrderDetailID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=519;
-
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
-
---
--- AUTO_INCREMENT for table `shippers`
---
-ALTER TABLE `shippers`
-  MODIFY `ShipperID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `suppliers`
---
-ALTER TABLE `suppliers`
-  MODIFY `SupplierID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `orders`
---
-ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`CustomerID`),
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`),
-  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`ShipperID`) REFERENCES `shippers` (`ShipperID`);
-
---
--- Constraints for table `order_details`
---
-ALTER TABLE `order_details`
-  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`),
-  ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`);
-
---
--- Constraints for table `products`
---
-ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`CategoryID`) REFERENCES `categories` (`CategoryID`),
-  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`SupplierID`) REFERENCES `suppliers` (`SupplierID`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- --------------------------------------------------------
