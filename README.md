@@ -16,10 +16,15 @@ Once installed, configure users within the PostgreSQL shell. By default, the hos
 ALTER USER postgres PASSWORD 'root';
 ```
 
-Every user should have its own database for storing user information and privileges. Create a new user and its own database running the code below.
+Every user/role should have its own database for storing user information and privileges. Create a new user and its own database running the code below.
 ```
 CREATE USER nico WITH CREATEDB LOGIN ENCRYPTED PASSWORD 'nico';
 CREATE DATABASE nico;
+
+CREATE ROLE test WITH LOGIN ENCRYPTED PASSWORD 'test';
+CREATE DATABASE nico;
+
+ALTER ROLE test CREATEDB;
 ```
 
 Grant privileges using the grant command
@@ -50,6 +55,7 @@ The desktop version is configured within the app while the web version is set up
 
 
 Useful commands in PostgreSQL shell:
+
 **\l**: List of databases.
 **\du**: List of users and roles.
 **\d**: List of tables in current database.
@@ -57,7 +63,7 @@ Useful commands in PostgreSQL shell:
 **\dt+**: List of tables in current database with additional info.
 **\d table_name**: Table information.
 **\q**: Exit shell.
----
+
 
 
 
@@ -72,6 +78,8 @@ CREATE DATABASE w3schools
 
 
 
+
+---
 ### :raising_hand: **Name** 
 Self-explanatory names are best. If the name sounds too vague or unrelated, it may be a signal to move on. It also must be catchy. Images, Logo, Gif or some color is strongly recommended.
 
