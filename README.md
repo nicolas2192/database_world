@@ -27,14 +27,36 @@ CREATE DATABASE nico;
 ALTER ROLE test CREATEDB;
 ```
 
+Privileges are the permissions granted to users that enable them to perform certain actions, these are: SELECT , INSERT , UPDATE , DELETE , TRUNCATE , REFERENCES , TRIGGER , CREATE , CONNECT , TEMPORARY , EXECUTE , and USAGE . The privileges applicable to a particular object vary depending on the object's type (table, function, etc).
+
+
 Grant privileges using the grant command
 ```
 GRANT ALL PRIVILEGES ON DATABASE w3schools TO nico;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO nico;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO nico;
 ```
 
-Run PostgreSQL by typing 
+Remove or Revoke privileges with:
+```
+REVOKE SELECT ON ALL TABLES IN SCHEMA public FROM nick;
+```
+
+Check given privileges by running this query:
+```
+SELECT grantor, grantee, table_schema, table_name, privilege_type
+FROM information_schema.table_privileges
+WHERE grantee = 'user_name_to_check';
+```
+
+Run PostgreSQL by typing
 ```
 psql -U postgres -h localhost
+```
+
+List server details by running
+```
+SELECT * FROM pg_settings;
 ```
 
 Installing pgAdmin4
@@ -62,8 +84,8 @@ Useful commands in PostgreSQL shell:
 **\dt**: List of tables in current database.
 **\dt+**: List of tables in current database with additional info.
 **\d table_name**: Table information.
+**\conninfo**: Basic details related to the connection: user, database, port
 **\q**: Exit shell.
-
 
 
 
@@ -73,7 +95,7 @@ CREATE DATABASE w3schools
 
 \connect w3schools
 
-\i file.sql
+\i /user_name/Documents/.../data/file.sql
 
 
 
