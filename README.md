@@ -78,25 +78,23 @@ The desktop version is configured within the app while the web version is set up
 
 Useful commands in PostgreSQL shell:
 
-**\l**: List of databases.
-**\du**: List of users and roles.
-**\d**: List of tables in current database.
-**\dt**: List of tables in current database.
-**\dt+**: List of tables in current database with additional info.
-**\d table_name**: Table information.
-**\conninfo**: Basic details related to the connection: user, database, port
-**\q**: Exit shell.
+- \l: List of databases.
+- \du: List of users and roles.
+- \d: List of tables in current database.
+- \dt: List of tables in current database.
+- \dt+: List of tables in current database with additional info.
+- \d table_name: Table information.
+- \conninfo: Basic details related to the connection: user, database, port
+- \q: Exit shell.
 
 
 
 Dumping w3schools data
-
-CREATE DATABASE w3schools
-
+```
+CREATE DATABASE w3schools;
 \connect w3schools
-
 \i /user_name/Documents/.../data/file.sql
-
+```
 
 
 
