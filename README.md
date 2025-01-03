@@ -1,8 +1,8 @@
-# w3schools
+# Database World
+All database knowledge you will ever need in one single place!
 
-Set up your own PostgreSQL server and load w3schools dataset on it.
-
-
+## :: Data files
+- W3Schools database
 
 ## :wrench: Installing and configuring PostgresSQL
 
@@ -96,11 +96,9 @@ CREATE DATABASE w3schools;
 \i /user_name/Documents/.../data/file.sql
 ```
 
-
-
-## Useful link
-[postgres article, some useful tips](https://challahscript.com/what_i_wish_someone_told_me_about_postgres)
-[official Donts, postgres documentation](https://wiki.postgresql.org/wiki/Don%27t_Do_This)
+## Useful Postgres links
+[Postgres Tips.](https://challahscript.com/what_i_wish_someone_told_me_about_postgres)
+[Official Postgres Documentation, What NOT to do.](https://wiki.postgresql.org/wiki/Don%27t_Do_This)
 
 
 ---
