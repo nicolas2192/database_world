@@ -6,6 +6,8 @@ All database knowledge you will ever need in one single place!
 
 ## :elephant: PostgresSQL
 
+### :gear: Installation
+
 Install PostrgeSQL by running in the terminal: 
 ```
 sudo apt install postgresql
@@ -94,6 +96,49 @@ CREATE DATABASE w3schools;
 ```
 
 **Useful Postgres links**
-- Official Postgres Documentation: [What NOT to do](https://wiki.postgresql.org/wiki/Don%27t_Do_This)
-- [Postgres Tips](https://challahscript.com/what_i_wish_someone_told_me_about_postgres)
+- Official Postgres Documentation: What Not to do [here](https://wiki.postgresql.org/wiki/Don%27t_Do_This)
+- Postgres Useful Tips [here](https://challahscript.com/what_i_wish_someone_told_me_about_postgres)
 
+## Database Fundamentals
+
+### Processing Data
+
+There are two main different approaches to processing data, OLTP and OLAP.
+
+|OLTP|OLAP|
+|---|---|
+|Online Transaction Processing|Online Analytical Processing|
+|Better suited for writting data|Better suited for reading data|
+|Support daily transactions|Report and analyze data|
+|Application oriented|Subject oriented|
+|Data is considered up-to-date, operational|Data is consolidated, historical|
+|Size goes up to gigabytes(smaller)|Size goes up to terabytes (bigger)|
+|Simple transactional queries|Complex aggregated queries|
+|Frequent updates|Limited updates|
+|Several users|Few users|
+|Data is stored in a Operational Database|Data is stored in a Data Warehouse|
+
+### Storing Data.
+
+Data storage could be accomplished in different ways, some common ones are:
+
+- **Structure Data**: Follows a schema, data types and relationships are defined.
+- **Unstructured Data**: Schemaless, Makes up most of the data in the world.
+- **Semi-structured Data**: Do not follow a larger schema, Self-describing structure (JSON, XML, etc).
+
+Data lakes store data as object, which means the storage is cheaper than traditional databases or data warehouses.
+
+### Data modeling 
+Process of creating a data model fo the data to be stored. Common data models are data vault or dimensional modeling. The main objective of these models is to make the reading process more efficient.
+
+There are 3 steps when it comes to creating a model
+1. Conceptual data model: Describes entities, relationships and attributes in a high level view. 
+2. Logical data model: Defines tables, columns and relationships. 
+3. Physical data model: Describes the physical storage. Tables are created in the database.
+
+#### Dimensional Modeling
+Adaptation of the relational model for data warehouse design. It is optimized for OLAP queries, it is meant to be consumed frequently and updated not so often. This model is also known as star schema. 
+
+Dimensional models are comprised by two types of tables:
+- **Fact Tables**: Depend on the business case, are updated frequently and are connected to dimensions via foreign keys.
+- **Dimension Tables**: Hold description of attributes and does not change that often. 
