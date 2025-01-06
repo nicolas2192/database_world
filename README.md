@@ -118,6 +118,12 @@ There are two main different approaches to processing data, OLTP and OLAP.
 |Several users|Few users|
 |Data is stored in a Operational Database|Data is stored in a Data Warehouse|
 
+### ETL vs ELT
+
+<p align="center">
+  <img width="700" height="350" src=".attachments/etl_vs_elt.png">
+</p>
+
 ### Storing Data.
 
 Data storage could be accomplished in different ways, some common ones are:
@@ -142,3 +148,4 @@ Adaptation of the relational model for data warehouse design. It is optimized fo
 Dimensional models are comprised by two types of tables:
 - **Fact Tables**: Depend on the business case, are updated frequently and are connected to dimensions via foreign keys.
 - **Dimension Tables**: Hold description of attributes and does not change that often. 
+
