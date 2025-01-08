@@ -99,15 +99,32 @@ CREATE DATABASE w3schools;
 - Official Postgres Documentation: What Not to do [here](https://wiki.postgresql.org/wiki/Don%27t_Do_This)
 - Postgres Useful Tips [here](https://challahscript.com/what_i_wish_someone_told_me_about_postgres)
 
-## Database Fundamentals
+## Normalized vs Denormalized
+Normalization is process of dividing one big table or flat tables into smaller ones looking for a reduction in redundancy and higher data integrity. Denormalization, on the other hand, is the process of doing the opposite. Transactional databases will be structured in a normalized way since it improves data writing while analitycal databases will be denormalized, hence focusing on reading speed. 
 
-### Processing Data
+### Normal Forms
+Normal forms set normalization rules. Each additional form adds another level of normalization, it goes from the First Normal Form (1NF) being the least normalized up to the Sixth Normal Form (6NF) being the most normalized approach. Most normalized databases stay in the Third Normal Form (3NF).
+
+**First Normal Form (1NF)**
+- Each record must be unique - no duplicate rows.
+- Each cell must hold one value.
+
+**Second Normal Form (2NF)**
+- Must satisfy 1NF.
+- Each non-key column must be dependent on all the keys.
+
+**Third Normal Form (3NF)**
+- Must satisfy 2NF.
+- Non-key columns cannot depend on other non-key columns (No transitive dependencies).
+
+## Processing Data
 
 There are two main different approaches to processing data, OLTP and OLAP.
 
 |OLTP|OLAP|
 |---|---|
 |Online Transaction Processing|Online Analytical Processing|
+|Normalized|Denormalized|
 |Better suited for writting data|Better suited for reading data|
 |Support daily transactions|Report and analyze data|
 |Application oriented|Subject oriented|
@@ -118,13 +135,13 @@ There are two main different approaches to processing data, OLTP and OLAP.
 |Several users|Few users|
 |Data is stored in a Operational Database|Data is stored in a Data Warehouse|
 
-### ETL vs ELT
+## ETL vs ELT
 
 <p align="center">
   <img width="700" height="350" src=".attachments/etl_vs_elt.png">
 </p>
 
-### Storing Data.
+## Storing Data
 
 Data storage could be accomplished in different ways, some common ones are:
 
@@ -134,7 +151,7 @@ Data storage could be accomplished in different ways, some common ones are:
 
 Data lakes store data as object, which means the storage is cheaper than traditional databases or data warehouses.
 
-### Data modeling 
+## Data Modeling 
 Process of creating a data model fo the data to be stored. Common data models are data vault or dimensional modeling. The main objective of these models is to make the reading process more efficient.
 
 There are 3 steps when it comes to creating a model
@@ -142,10 +159,10 @@ There are 3 steps when it comes to creating a model
 2. Logical data model: Defines tables, columns and relationships. 
 3. Physical data model: Describes the physical storage. Tables are created in the database.
 
-#### Dimensional Modeling
+### Dimensional Modeling
 Adaptation of the relational model for data warehouse design. It is optimized for OLAP queries, it is meant to be consumed frequently and updated not so often. This model is also known as star schema. 
 
 Dimensional models are comprised by two types of tables:
-- **Fact Tables**: Depend on the business case, are updated frequently and are connected to dimensions via foreign keys.
+- **Fact Tables**: Depend on the business case, are updated frequently and are connected to dimensions via foreign keys. This table holds all the business metrics.
 - **Dimension Tables**: Hold description of attributes and does not change that often. 
 
