@@ -42,6 +42,7 @@ GRANT SELECT ON ALL TABLES IN SCHEMA public TO nico;
 Remove or Revoke privileges with:
 ```
 REVOKE SELECT ON ALL TABLES IN SCHEMA public FROM nick;
+REVOKE INSERT ON table_name FROM role;
 ```
 
 Check given privileges by running this query:
@@ -93,6 +94,14 @@ Dumping w3schools data
 CREATE DATABASE w3schools;
 \connect w3schools
 \i /user_name/Documents/.../data/file.sql
+```
+
+### Postgres Admin Tables
+- Information Schema
+Retrieve all non-system views:
+```
+SELECT * FROM information_schema.views
+WHERE table_schema NOT IN ('pg_catalog', 'information_schema');
 ```
 
 **Useful Postgres links**
@@ -150,6 +159,12 @@ Data storage could be accomplished in different ways, some common ones are:
 - **Semi-structured Data**: Do not follow a larger schema, Self-describing structure (JSON, XML, etc).
 
 Data lakes store data as object, which means the storage is cheaper than traditional databases or data warehouses.
+
+## Table vs View vs Materialized View
+- **Views**: Is the result of a stored query on the data, it is execued every time the view is run. Views do not store any data. It is just like giving a long query an alias to make it easier execute. Views are used to hide sensitive data and logic giving access to only the right data.
+- **Tables**: Stores data in the database. It requieres more thinking since you have to determine relationships, data types, etc. It is useful when you are reading from it several times.
+- **Materialized Views**: These views store the weury result on disk, same as a table. The difference and benefit when compared with tables is that materialized views have refresh or rematelializtion parameters that help keeping the data updated.  
+
 
 ## Data Modeling 
 Process of creating a data model fo the data to be stored. Common data models are data vault or dimensional modeling. The main objective of these models is to make the reading process more efficient.
