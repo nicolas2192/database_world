@@ -220,3 +220,10 @@ WHERE table_schema NOT IN ('pg_catalog', 'information_schema');
 **Useful Postgres links**
 - Official Postgres Documentation: What Not to do [here](https://wiki.postgresql.org/wiki/Don%27t_Do_This)
 - Postgres Useful Tips [here](https://challahscript.com/what_i_wish_someone_told_me_about_postgres)
+
+## :duck: DuckDB
+
+### :gear: Installation
+
+
+Read parquet files directly into the database using `read_parquet('filename')`
