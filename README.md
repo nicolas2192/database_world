@@ -69,6 +69,10 @@ Data lakes store data as object, which means the storage is cheaper than traditi
 ### Data Lake
 Central store of data for the entire organization. Contains data from different departments and sources. Stores both structured and unstructured data.
 
+### Data Lakehouse
+Add something here
+
+
 ### Data Warehouse
 A computer system designed to store and analyze large amounts of data for an organization. Gathers data from different areas, integrates and stores it, making it available for analysis and dashboarding. Data is stored in a structured way, in rows and columns
 
@@ -78,6 +82,14 @@ A relational database for analysis. It focuses on single department. There are m
 <p align="center">
   <img width="1041" height="377" src=".attachments/data_storage_vs.png">
 </p>
+
+## Layers
+Layers are all the different schemas or folders where the data is stored and organized. Most common layers are Source, Staging, Storage and Production.
+
+Another common layer architecture is the [Medallion Architecture](https://www.databricks.com/glossary/medallion-architecture). This one is comprised by three layers: Bronze, Silver and Gold and mostly used in ELT approaches.
+
+Layering happens in the Data Warehouse or Data Lake depening on the ETL/ELT approach.
+
 
 ## Partitioning
 Partitioning is the process of splitting a huge table in multilpe smaller tables. This is commomnly done to increase reading performance. There are two types of partitioning, vertical, spliting by columns, and horizontal, spliting by rows.
