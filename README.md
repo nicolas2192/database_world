@@ -66,6 +66,19 @@ Data storage could be accomplished in different ways, some common ones are:
 
 Data lakes store data as object, which means the storage is cheaper than traditional databases or data warehouses.
 
+### Data Lake
+Central store of data for the entire organization. Contains data from different departments and sources. Stores both structured and unstructured data.
+
+### Data Warehouse
+A computer system designed to store and analyze large amounts of data for an organization. Gathers data from different areas, integrates and stores it, making it available for analysis and dashboarding. Data is stored in a structured way, in rows and columns
+
+### Data Mart
+A relational database for analysis. It focuses on single department. There are many data marts within a data warehouse. It is just another level of segregation that helps on the organization of the data.
+
+<p align="center">
+  <img width="1041" height="377" src=".attachments/data_storage_vs.png">
+</p>
+
 ## Partitioning
 Partitioning is the process of splitting a huge table in multilpe smaller tables. This is commomnly done to increase reading performance. There are two types of partitioning, vertical, spliting by columns, and horizontal, spliting by rows.
 
