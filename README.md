@@ -32,7 +32,7 @@ Normal forms set normalization rules. Each additional form adds another level of
 
 ## Processing Data
 
-There are two main different approaches to processing data, OLTP and OLAP.
+There are two main different systems to processing data, OLTP and OLAP.
 
 |OLTP|OLAP|
 |---|---|
@@ -90,7 +90,6 @@ Another common layer architecture is the [Medallion Architecture](https://www.da
 
 Layering happens in the Data Warehouse or Data Lake depening on the ETL/ELT approach.
 
-
 ## Partitioning
 Partitioning is the process of splitting a huge table in multilpe smaller tables. This is commomnly done to increase reading performance. There are two types of partitioning, vertical, spliting by columns, and horizontal, spliting by rows.
 
@@ -115,8 +114,9 @@ CREATE INDEX ON flights ('flight_date')
 - **Tables**: Stores data in the database. It requieres more thinking since you have to determine relationships, data types, etc. It is useful when you are reading from it several times.
 - **Materialized Views**: These views store the weury result on disk, same as a table. The difference and benefit when compared with tables is that materialized views have refresh or rematelializtion parameters that help keeping the data updated.  
 
+## Data Warehouse Architecture 
+When it comes to designing the data warehouse architecture, there are many schemas to choose from. Some of the most common aproaches are; The Inmon Model, Kimball Model, Data Vault. The business needs will highly influence the data warehouse architecture.
 
-## Data Modeling 
 Process of creating a data model fo the data to be stored. Common data models are data vault or dimensional modeling. The main objective of these models is to make the reading process more efficient.
 
 There are 3 steps when it comes to creating a model
@@ -124,12 +124,19 @@ There are 3 steps when it comes to creating a model
 2. Logical data model: Defines tables, columns and relationships. 
 3. Physical data model: Describes the physical storage. Tables are created in the database.
 
-### Dimensional Modeling
-Adaptation of the relational model for data warehouse design. It is optimized for OLAP queries, it is meant to be consumed frequently and updated not so often. This model is also known as star schema. 
+### Inmon Model
+Designed by Bill Inmon, considered the father of the data warehouse, focuses on a Enterprise Data Warehouse, this is where all organization's data sits. Data should be cleaned before getting inside and shoudl be normalized. Data is fed into multiple data marts that serve specific departments. All naming convetions, calculations, etc are agreed upon before the creation which reduces data inaccuracy (showing two different values for the same metric). This approach is also known as the Top-down approach.
+
+### Kimball Model
+Also known as Bottom-up, Dimensional Modeling or Star Schema, the kimball approach focuses on denormalizing data into fact and dimension tables. Unlike the Inmon Model, data can be linked using shared attributes. Since models are designed on the fly, there is a higher risk of data inaccuracy.
+
 
 Dimensional models are comprised by two types of tables:
 - **Fact Tables**: Depend on the business case, are updated frequently and are connected to dimensions via foreign keys. This table holds all the business metrics.
 - **Dimension Tables**: Hold description of attributes and does not change that often. 
+
+Difference between Inmon and Kimball Model [video](https://www.youtube.com/watch?v=Tff34jj_V-0)
+Difference between Data Vault and Traditional Models [video](https://www.youtube.com/watch?v=D914nNWGP6E)
 
 ## :elephant: PostgresSQL
 
