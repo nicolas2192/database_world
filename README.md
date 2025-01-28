@@ -254,8 +254,30 @@ WHERE table_schema NOT IN ('pg_catalog', 'information_schema');
 - Postgres Useful Tips [here](https://challahscript.com/what_i_wish_someone_told_me_about_postgres)
 
 ## :duck: DuckDB
+DuckDB is an in-process SQL OLAP database, which means it is a database optimized for analytics and runs within the same process as the application using it. 
+
+Similar to SQLite, the database lives in a single file. Usual file extension are .duckdb and .db
 
 ### :gear: Installation
+Install DuckDB straight from the terminal  and load data into it.
+```
+pip install duckdb
+duckdb ~/Desktop/my_database.duckdb
+CREATE TABLE duck AS SELECT * FROM read_csv('path/to/your/file.csv');
+```
 
+Load w3schools yables from the terminal:
+```
+duckdb my_database.duckdb -c "CREATE TABLE categories AS SELECT * FROM read_csv_auto('~/Desktop/.../categories.csv', delim=';');"
+```
+Information Schema stores all metadata, [official page](https://duckdb.org/docs/sql/meta/information_schema.html)
 
-Read parquet files directly into the database using `read_parquet('filename')`
+Print tables and schemas on screen by running the commands below. Default schema name is `main`
+```
+SELECT * FROM information_schema.tables;
+SELECT * FROM information_schema.schemata;
+```
+
+You can read from parquet or csv files using the `read_parquet('filepath')` or `read_csv_auto('filepath')`
+
+Further instructions in the [official Mother Duck page](https://motherduck.com/blog/duckdb-tutorial-for-beginners/)
