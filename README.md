@@ -64,10 +64,10 @@ Data storage could be accomplished in different ways, some common ones are:
 - **Unstructured Data**: Schemaless, Makes up most of the data in the world.
 - **Semi-structured Data**: Do not follow a larger schema, Self-describing structure (JSON, XML, etc).
 
-Data lakes store data as object, which means the storage is cheaper than traditional databases or data warehouses.
-
 ### Data Lake
 Central store of data for the entire organization. Contains data from different departments and sources. Stores both structured and unstructured data.
+
+Data lakes store data as object, which means the storage is cheaper than traditional databases or data warehouses.
 
 ### Data Lakehouse
 Add something here
@@ -83,6 +83,11 @@ A relational database for analysis. It focuses on single department. There are m
   <img width="1041" height="377" src=".attachments/data_storage_vs.png">
 </p>
 
+## Row Storage vs Column Storage
+Row storage, as its name implies, stores data by adding new rows. This is the prefereable storage approach for transactional systems since it just needs to add an additional block of data. On the other hand, data stored in a columnar approach splits columns into data block, this method is used for analytical databases as it aggregates data faster.
+
+Compression is better on columnar storage because data of the same type is packed together, thus reducing overall size.
+
 ## Layers
 Layers are all the different schemas or folders where the data is stored and organized. Most common layers are Source, Staging, Storage and Production.
 
@@ -92,22 +97,6 @@ Layering happens in the Data Warehouse or Data Lake depening on the ETL/ELT appr
 
 ## Partitioning
 Partitioning is the process of splitting a huge table in multilpe smaller tables. This is commomnly done to increase reading performance. There are two types of partitioning, vertical, spliting by columns, and horizontal, spliting by rows.
-
-### Horizontal Partitioning
-Usualy done by id or some date column.
-
-```
-CREATE TABLE flights (
-  ...
-  flight_date DATE NOT NULL
-)
-PARTITION BY RANGE (flight_date);
-
-CREATE TABLE flights_2024 PARTITION OF flights
-FOR VALUES FROM ('2024-01-01') TO ('2024-12-31');
-
-CREATE INDEX ON flights ('flight_date')
-```
 
 ## Table vs View vs Materialized View
 - **Views**: Is the result of a stored query on the data, it is execued every time the view is run. Views do not store any data. It is just like giving a long query an alias to make it easier execute. Views are used to hide sensitive data and logic giving access to only the right data.
@@ -130,13 +119,34 @@ Designed by Bill Inmon, considered the father of the data warehouse, focuses on 
 ### Kimball Model
 Also known as Bottom-up, Dimensional Modeling or Star Schema, the kimball approach focuses on denormalizing data into fact and dimension tables. Unlike the Inmon Model, data can be linked using shared attributes. Since models are designed on the fly, there is a higher risk of data inaccuracy.
 
-
 Dimensional models are comprised by two types of tables:
 - **Fact Tables**: Depend on the business case, are updated frequently and are connected to dimensions via foreign keys. This table holds all the business metrics.
-- **Dimension Tables**: Hold description of attributes and does not change that often. 
+- **Dimension Tables**: Hold description of attributes and does not change that often.
 
-Difference between Inmon and Kimball Model [video](https://www.youtube.com/watch?v=Tff34jj_V-0)
-Difference between Data Vault and Traditional Models [video](https://www.youtube.com/watch?v=D914nNWGP6E)
+#### Kimball's four steps process
+Four steps to build the model:
+**Step 1**: Define the business process and questions the model will answer.
+**Step 2**: Decide the grain. Ideally it should be the lowest posssible level, where the data cannot be split further.
+**Step 3**: Identify all dimension tables, specific for the model and common ones.
+**Step 4**: Identify fact tables and metrics to be added.
+
+#### Slowly Changing Dimensions (SCD)
+Different approaches to keep outdated date available for analysis. There are several types, being the type 2 the most common one.
+**Type 1**: Updates the value.
+**Type 2**: Adds a new record and audit columns such as valid_from and valid_to.
+**Type 3**: Adds a new column with the previous value.
+
+Furthere reading about [SCD](https://www.geeksforgeeks.org/slowly-changing-dimensions/)
+
+
+**Useful links**
+- Leap Frog dimensional model [videos](https://www.youtube.com/watch?v=cwpL-3rkRYQ&t)
+
+- Create a dimensional model step by step [video](https://www.youtube.com/watch?v=7HyGM3Iw0Kc)
+
+- Difference between Inmon and Kimball Model [video](https://www.youtube.com/watch?v=Tff34jj_V-0)
+
+- Difference between Data Vault and Traditional Models [video](https://www.youtube.com/watch?v=D914nNWGP6E)
 
 ## :elephant: PostgresSQL
 

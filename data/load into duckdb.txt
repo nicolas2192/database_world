@@ -1,0 +1,8 @@
+duckdb w3schools.duckdb -c "CREATE TABLE w3categories AS SELECT * FROM read_csv_auto('~/Desktop/zzz/database_world/data/w3schools_csv/categories.csv', delim=';');"
+duckdb w3schools.duckdb -c "CREATE TABLE w3customers AS SELECT * FROM read_csv_auto('~/Desktop/zzz/database_world/data/w3schools_csv/customers.csv', delim=';');"
+duckdb w3schools.duckdb -c "CREATE TABLE w3employees AS SELECT * FROM read_csv_auto('~/Desktop/zzz/database_world/data/w3schools_csv/employees.csv', delim=';');"
+duckdb w3schools.duckdb -c "CREATE TABLE w3order_details AS SELECT * FROM read_csv_auto('~/Desktop/zzz/database_world/data/w3schools_csv/order_details.csv', delim=';');"
+duckdb w3schools.duckdb -c "CREATE TABLE w3orders AS SELECT * FROM read_csv_auto('~/Desktop/zzz/database_world/data/w3schools_csv/orders.csv', delim=';');"
+duckdb w3schools.duckdb -c "CREATE TABLE w3products AS SELECT * FROM read_csv_auto('~/Desktop/zzz/database_world/data/w3schools_csv/products.csv', delim=';');"
+duckdb w3schools.duckdb -c "CREATE TABLE w3shippers AS SELECT * FROM read_csv_auto('~/Desktop/zzz/database_world/data/w3schools_csv/shippers.csv', delim=';');"
+duckdb w3schools.duckdb -c "CREATE TABLE w3suppliers AS SELECT * FROM read_csv_auto('~/Desktop/zzz/database_world/data/w3schools_csv/suppliers.csv', delim=';');"
