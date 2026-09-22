@@ -38,6 +38,10 @@ Normal forms set normalization rules. Each additional form adds another level of
 - Must satisfy 2NF.
 - Non-key columns cannot depend on other non-key columns (No transitive dependencies).
 
+<p align="center">
+  <img width="820" height="240" src=".attachments/normal_forms.png">
+</p>
+
 ## Processing Data
 
 There are two main different systems to processing data, OLTP and OLAP.
