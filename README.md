@@ -2,7 +2,7 @@
 All database knowledge you will ever need in one single place!
 
 ## Database Managament System
-Also known as DBMS, is the software resposible for creating an maintaining the database as well as the interface between users and the data. It is comprised by the database engine, the data schema and the data itself. There are 2 types; SQL DBMS and NoSQL DBMS.
+Also known as DBMS, is the software responsible for creating an maintaining the database as well as the interface between users and the data. It is comprised by the database engine, the data schema and the data itself. There are 2 types; SQL DBMS and NoSQL DBMS.
 
 - **SQL DBMS**: Also known as RDBMS, R for Relational, some examples are MSQL Server, PostgreSQL and Oracle. The data structured and unchanging. The schema is defined and consistent.
 - **NoSQL DBMS**: Less structured and lacks a well defined schema, allows more flexibility. It is document-centered instead of table-centered. These type of databases are best suited for companies experiencing rapid growth or for storing large quantities of data. There are different types of NoSQL DBMS, depending on how data is stored:
@@ -21,7 +21,7 @@ Foreign key. Links one entity to another.
 </p>
 
 ## Normalized vs Denormalized
-Normalization is process of dividing one big table or flat tables into smaller ones looking for a reduction in redundancy and higher data integrity. Denormalization, on the other hand, is the process of doing the opposite. Transactional databases will be structured in a normalized way since it improves data writing while analitycal databases will be denormalized, hence focusing on reading speed. 
+Normalization is process of dividing one big table or flat tables into smaller ones looking for a reduction in redundancy and higher data integrity. Denormalization, on the other hand, is the process of doing the opposite. Transactional databases will be structured in a normalized way since it improves data writing while analytical databases will be denormalized, hence focusing on reading speed. 
 
 ### Normal Forms
 Normal forms set normalization rules. Each additional form adds another level of normalization, it goes from the First Normal Form (1NF) being the least normalized up to the Sixth Normal Form (6NF) being the most normalized approach. Most normalized databases stay in the Third Normal Form (3NF).
@@ -46,7 +46,7 @@ There are two main different systems to processing data, OLTP and OLAP.
 |---|---|
 |Online Transaction Processing|Online Analytical Processing|
 |Normalized|Denormalized|
-|Better suited for writting data|Better suited for reading data|
+|Better suited for writing data|Better suited for reading data|
 |Support daily transactions|Report and analyze data|
 |Application oriented|Subject oriented|
 |Data is considered up-to-date, operational|Data is consolidated, historical|
@@ -78,8 +78,7 @@ Central store of data for the entire organization. Contains data from different 
 Data lakes store data as object, which means the storage is cheaper than traditional databases or data warehouses.
 
 ### Data Lakehouse
-Add something here
-
+It is a modern approach for data storage and management architecture that merges the low-cost, scalable storage of a data lake with the management and governance features of a data warehouse.
 
 ### Data Warehouse
 A computer system designed to store and analyze large amounts of data for an organization. Gathers data from different areas, integrates and stores it, making it available for analysis and dashboarding. Data is stored in a structured way, in rows and columns
@@ -101,18 +100,18 @@ Layers are all the different schemas or folders where the data is stored and org
 
 Another common layer architecture is the [Medallion Architecture](https://www.databricks.com/glossary/medallion-architecture). This one is comprised by three layers: Bronze, Silver and Gold and mostly used in ELT approaches.
 
-Layering happens in the Data Warehouse or Data Lake depening on the ETL/ELT approach.
+Layering happens in the Data Warehouse or Data Lake depending on the ETL/ELT approach.
 
 ## Partitioning
-Partitioning is the process of splitting a huge table in multilpe smaller tables. This is commomnly done to increase reading performance. There are two types of partitioning, vertical, spliting by columns, and horizontal, spliting by rows.
+Partitioning is the process of splitting a huge table in multiple smaller tables. This is commomnly done to increase reading performance. There are two types of partitioning, vertical, spliting by columns, and horizontal, spliting by rows.
 
 ## Table vs View vs Materialized View
 - **Views**: Is the result of a stored query on the data, it is execued every time the view is run. Views do not store any data. It is just like giving a long query an alias to make it easier execute. Views are used to hide sensitive data and logic giving access to only the right data.
-- **Tables**: Stores data in the database. It requieres more thinking since you have to determine relationships, data types, etc. It is useful when you are reading from it several times.
-- **Materialized Views**: These views store the weury result on disk, same as a table. The difference and benefit when compared with tables is that materialized views have refresh or rematelializtion parameters that help keeping the data updated.  
+- **Tables**: Stores data in the database. It requires more thinking since you have to determine relationships, data types, etc. It is useful when you are reading from it several times.
+- **Materialized Views**: These views store the query result on disk, same as a table. The difference and benefit when compared with tables is that materialized views have refresh or rematelializtion parameters that help keeping the data updated.  
 
 ## Data Warehouse Architecture 
-When it comes to designing the data warehouse architecture, there are many schemas to choose from. Some of the most common aproaches are; The Inmon Model, Kimball Model, Data Vault. The business needs will highly influence the data warehouse architecture.
+When it comes to designing the data warehouse architecture, there are many schemas to choose from. Some of the most common approaches are; The Inmon Model, Kimball Model, Data Vault. The business needs will highly influence the data warehouse architecture.
 
 Process of creating a data model fo the data to be stored. Common data models are data vault or dimensional modeling. The main objective of these models is to make the reading process more efficient.
 
@@ -122,7 +121,7 @@ There are 3 steps when it comes to creating a model
 3. Physical data model: Describes the physical storage. Tables are created in the database.
 
 ### Inmon Model
-Designed by Bill Inmon, considered the father of the data warehouse, focuses on a Enterprise Data Warehouse, this is where all organization's data sits. Data should be cleaned before getting inside and shoudl be normalized. Data is fed into multiple data marts that serve specific departments. All naming convetions, calculations, etc are agreed upon before the creation which reduces data inaccuracy (showing two different values for the same metric). This approach is also known as the Top-down approach.
+Designed by Bill Inmon, considered the father of the data warehouse, focuses on a Enterprise Data Warehouse, this is where all organization's data sits. Data should be cleaned before getting inside and should be normalized. Data is fed into multiple data marts that serve specific departments. All naming conventions, calculations, etc are agreed upon before the creation which reduces data inaccuracy (showing two different values for the same metric). This approach is also known as the Top-down approach.
 
 ### Kimball Model
 Also known as Bottom-up, Dimensional Modeling or Star Schema, the kimball approach focuses on denormalizing data into fact and dimension tables. Unlike the Inmon Model, data can be linked using shared attributes. Since models are designed on the fly, there is a higher risk of data inaccuracy.
@@ -155,7 +154,7 @@ Different approaches to keep outdated date available for analysis. There are sev
 
 **Type 3**: Adds a new column with the previous value.
 
-Furthere reading about [SCD](https://www.geeksforgeeks.org/slowly-changing-dimensions/)
+Further reading about [SCD](https://www.geeksforgeeks.org/slowly-changing-dimensions/)
 
 ### Data Vault
 A modeling technique focusing on historical data tracking, characterized by using hubs, links and satellites.
@@ -196,7 +195,7 @@ ALTER USER postgres PASSWORD 'root';
 
 ### :person: Roles
 
-A role is a database object that contains information related to privileges, defining actions such as login & password, creation, read & write, etc. Rolss can be assigned to one or more users. 
+A role is a database object that contains information related to privileges, defining actions such as login & password, creation, read & write, etc. Roles can be assigned to one or more users. 
 
 There is no underlying difference between groups and users when it comes to roles. A group role 
 and user role are the same object, the difference is the number of users it is assigned to. 
