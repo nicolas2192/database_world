@@ -12,6 +12,14 @@ Also known as DBMS, is the software resposible for creating an maintaining the d
 3. Columnar Database: Stores data in columns instead of rows, this allows scalability and fast reads. This is commonly used for big data and analytical purposes. As an example, Cassandra.
 4. Graph Database: Data is interconnected and best represented as a graph. Use cases will be social media apps or recommendations. As an example, neo4j.
 
+## Relational Data
+Primary key: A primary key uniquely identifies each record in an entity.
+Foreign key. Links one entity to another.
+
+<p align="center">
+  <img width="700" height="350" src=".attachments/relational_data.png">
+</p>
+
 ## Normalized vs Denormalized
 Normalization is process of dividing one big table or flat tables into smaller ones looking for a reduction in redundancy and higher data integrity. Denormalization, on the other hand, is the process of doing the opposite. Transactional databases will be structured in a normalized way since it improves data writing while analitycal databases will be denormalized, hence focusing on reading speed. 
 
@@ -123,20 +131,44 @@ Dimensional models are comprised by two types of tables:
 - **Fact Tables**: Depend on the business case, are updated frequently and are connected to dimensions via foreign keys. This table holds all the business metrics.
 - **Dimension Tables**: Hold description of attributes and does not change that often.
 
+<p align="center">
+  <img width="524" height="333" src=".attachments/dim_model_example.png">
+</p>
+
 #### Kimball's four steps process
 Four steps to build the model:
+
 **Step 1**: Define the business process and questions the model will answer.
-**Step 2**: Decide the grain. Ideally it should be the lowest posssible level, where the data cannot be split further.
+
+**Step 2**: Decide the grain. Ideally it should be the lowest possible level, where the data cannot be split further.
+
 **Step 3**: Identify all dimension tables, specific for the model and common ones.
+
 **Step 4**: Identify fact tables and metrics to be added.
 
 #### Slowly Changing Dimensions (SCD)
 Different approaches to keep outdated date available for analysis. There are several types, being the type 2 the most common one.
+
 **Type 1**: Updates the value.
+
 **Type 2**: Adds a new record and audit columns such as valid_from and valid_to.
+
 **Type 3**: Adds a new column with the previous value.
 
 Furthere reading about [SCD](https://www.geeksforgeeks.org/slowly-changing-dimensions/)
+
+### Data Vault
+A modeling technique focusing on historical data tracking, characterized by using hubs, links and satellites.
+
+**Hubs:** Represent unique business concepts using a singular business key. Similar to fact tables.
+
+**Links:** Capture relationship and interactions between the hubs. These behave like bridges in the kimball model
+
+**Satellites:** Store descriptive and historical details related to hubs and links. Like dimensions.
+
+<p align="center">
+  <img width="725" height="333" src=".attachments/data_vault_example.png">
+</p>
 
 
 **Useful links**
