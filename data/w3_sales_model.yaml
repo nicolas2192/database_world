@@ -1,0 +1,98 @@
+name: w3_sales
+description: Sales orders for the W3Schools sample company, covering July 1996 to February 1997. Each row is one product line within a customer order.
+
+tables:
+  - name: sales
+    description: One row per order line item, with customer, product, employee, shipper, and revenue.
+    base_table:
+      database: W3SCHOOLS
+      schema: PUBLIC
+      table: W3_SALES_V
+    primary_key:
+      columns:
+        - ORDERDETAILID
+
+    time_dimensions:
+      - name: order_date
+        expr: ORDERDATE
+        data_type: DATE
+        description: Date the order was placed.
+
+    dimensions:
+      - name: customer_name
+        expr: CUSTOMERNAME
+        data_type: VARCHAR
+        description: Name of the customer company.
+        sample_values: ["Ernst Handel", "Around the Horn"]
+      - name: customer_country
+        expr: CUSTOMERCOUNTRY
+        data_type: VARCHAR
+        description: Country of the customer, in English. Synonyms include nation and location.
+        sample_values: ["Germany", "USA", "UK"]
+      - name: customer_city
+        expr: CUSTOMERCITY
+        data_type: VARCHAR
+        description: City of the customer.
+      - name: employee_name
+        expr: EMPLOYEENAME
+        data_type: VARCHAR
+        description: Full name of the employee who handled the order. Synonyms include salesperson, rep, and seller.
+        sample_values: ["Nancy Davolio", "Andrew Fuller"]
+      - name: shipper_name
+        expr: SHIPPERNAME
+        data_type: VARCHAR
+        description: Shipping company that delivered the order. Synonyms include carrier and courier.
+        sample_values: ["Speedy Express", "United Package", "Federal Shipping"]
+      - name: product_name
+        expr: PRODUCTNAME
+        data_type: VARCHAR
+        description: Name of the product sold.
+      - name: category_name
+        expr: CATEGORYNAME
+        data_type: VARCHAR
+        description: Product category, such as Beverages, Condiments, Seafood. Synonyms include type and group.
+        sample_values: ["Beverages", "Seafood", "Dairy Products"]
+      - name: supplier_name
+        expr: SUPPLIERNAME
+        data_type: VARCHAR
+        description: Company that supplies the product.
+
+    facts:
+      - name: quantity
+        expr: QUANTITY
+        data_type: NUMBER
+        description: Number of units of the product on this line item.
+      - name: unit_price
+        expr: UNITPRICE
+        data_type: NUMBER
+        description: Price per unit of the product.
+      - name: line_revenue
+        expr: LINEREVENUE
+        data_type: NUMBER
+        description: Revenue for this line, calculated as quantity times unit price. Use this for sales, revenue, or income questions.
+
+    measures:
+      - name: total_revenue
+        expr: SUM(LINEREVENUE)
+        data_type: NUMBER
+        default_aggregation: sum
+        description: Total sales revenue. Synonyms include sales, income, and turnover.
+      - name: total_units_sold
+        expr: SUM(QUANTITY)
+        data_type: NUMBER
+        description: Total number of units sold.
+      - name: order_count
+        expr: COUNT(DISTINCT ORDERID)
+        data_type: NUMBER
+        description: Number of distinct orders.
+      - name: customer_count
+        expr: COUNT(DISTINCT CUSTOMERNAME)
+        data_type: NUMBER
+        description: Number of distinct customers who placed orders.
+
+verified_queries:
+  - name: revenue_by_month
+    question: What is the monthly revenue?
+    sql: SELECT DATE_TRUNC('month', ORDERDATE) AS month, SUM(LINEREVENUE) AS revenue FROM w3schools.public.w3_sales_v GROUP BY 1 ORDER BY 1
+    verified_at: 1760832000
+    verified_by: Data team
